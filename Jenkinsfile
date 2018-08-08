@@ -14,6 +14,25 @@ pipeline {
         sh 'java -version'
       }
     }
+    stage('Testing'){
+      failFast true
+      parallel {
+        stage('Java8'){
+          agent { label 'jdk8'}
+          steps{
+            sh 'java -version'
+            sleep time: 10, unit: 'SECONDS'
+          }
+        }
+        stage('Java9'){
+          agent { label 'jdk9' }
+          steps {
+            sh 'java -version'
+            sleep time: 20, unit: 'SECONDS'
+          }
+        }
+      }
+    }
   }
   environment {
     TEST_USER = credentials('test-user')

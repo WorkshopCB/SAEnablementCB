@@ -14,6 +14,14 @@ pipeline {
         sh 'java -version'
       }
     }
+    stage('Deploy') {
+      input {
+        message 'Should we continue?'
+      }
+      steps {
+        echo 'Conntinuing deployment'
+      }
+    }
   }
   environment {
     TEST_USER = credentials('test-user')

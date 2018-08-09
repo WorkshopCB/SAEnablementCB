@@ -5,6 +5,9 @@ pipeline {
     }
 
   }
+  libraries {
+    lib("SharedLibs")
+  }
   stages {
     stage('Say Hello') {
       steps {
@@ -63,6 +66,11 @@ pipeline {
       agent none
       steps {
         echo "Deploying..."
+      }
+    }
+    stage('Shared Lib'){
+      steps{
+        helloWorld("Jenkins")
       }
     }
   }

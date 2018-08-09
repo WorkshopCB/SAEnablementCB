@@ -33,6 +33,18 @@ pipeline {
         }
       }
     }
+    stage('Checkpoint'){
+      agent none
+      steps {
+        checkpoint 'Checkpoint'
+      }
+    }
+    stage('Deploy'){
+      agent none
+      steps {
+        echo "Deploying..."
+      }
+    }
   }
   environment {
     TEST_USER = credentials('test-user')
